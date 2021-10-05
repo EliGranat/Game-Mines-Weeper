@@ -2,7 +2,7 @@ body {
     background-color: rgba(214, 68, 10, 0.719);
     text-align: center;
     color: yellow;
-    background-image: url(./img/back3.jpg);
+    background-image: url(img/back3.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -12,7 +12,7 @@ td {
     width: 40px;
     border: rgb(252, 252, 252) solid 2px;
     text-align: center;
-    border-image-slice: url(./img/back3.jpg);
+    border-image-slice: url(img/back3.jpg);
     background-color: rgba(255, 255, 255, 0.274);
 }
 
@@ -43,7 +43,7 @@ table {
     height: 40px;
     width: 90px;
     margin-left: 15px;
-    background-image: url(./img/bac2.jpg);
+    background-image: url(img/bac2.jpg);
     background-repeat: no-repeat;
     background-size: 200px;
     color: white;
@@ -75,7 +75,7 @@ table {
     font-size: 45px;
     height: 55px;
     background-color: violet;
-    background-image: url(./img/bac2.jpg);
+    background-image: url(img/bac2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
