@@ -1,3 +1,7 @@
+* {
+    margin: 0;
+}
+
 body {
     background-color: rgba(214, 68, 10, 0.719);
     text-align: center;
@@ -6,6 +10,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     user-select: none;
+    height: 100%;
 }
 
 td {
@@ -32,7 +37,8 @@ table {
 }
 
 .board-container {
-    min-height: 410px;
+    /* min-height: 500px; */
+    min-height: 100%;
 }
 
 .game-over {
@@ -91,8 +97,9 @@ table {
     color: black;
     height: 25px;
     text-align: center;
-    position: sticky;
+    position: fixed;
     width: 100%;
+    bottom: 0;
 }
 
 .warning {
