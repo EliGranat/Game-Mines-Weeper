@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=, initial-scale=1.0"> -->
+    <title>Game Mines Weeper</title>
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+
+<body>
+    <h1>Game Mines Weeper</h1>
+    <h2 class="game-over"></h2>
+    <div class="warning"><img src="./img/SM.png"> <button onclick="approveRules()" class="button-warning"> I'm Ready For it!</button> </div>
+    <div class="timer"> </div>
+    <div class="modal">
+        <div class="score">score: 0</div>
+        <div class="markedCount">🏴: 0</div>
+    </div>
+    <div class="buttons">
+        <button class="level1" onclick="levels(0)"> Beginner </button>
+        <button class="level2" onclick="levels(1)"> Medium </button>
+        <button class="level3" onclick="levels(2)"> Expert </button>
+    </div>
+
+
+    <div class="board-container"></div>
+    <footer>
+        <h3>&copy; Eli Granat 2021 </h3>
+
+    </footer>
+    <script src="js/util.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>

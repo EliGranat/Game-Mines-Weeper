@@ -1,0 +1,114 @@
+body {
+    background-color: rgba(214, 68, 10, 0.719);
+    text-align: center;
+    color: yellow;
+    background-image: url(/img/back3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+td {
+    height: 40px;
+    width: 40px;
+    border: rgb(252, 252, 252) solid 2px;
+    text-align: center;
+    border-image-slice: url(/img/back3.jpg);
+    background-color: rgba(255, 255, 255, 0.274);
+}
+
+.buttons {
+    /* background-color: brown; */
+    margin-top: 15px;
+}
+
+table {
+    margin: 0px auto;
+    border-collapse: collapse;
+    margin-top: 15px;
+    color: rgb(49, 128, 84);
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.game-over {
+    /* display: none; */
+    position: absolute;
+    background-color: rgba(129, 68, 68, 0.425);
+    right: 50%;
+    top: 31%;
+    transform: translateX(50%);
+    font-size: 70px;
+}
+
+.buttons button {
+    border-radius: 20%;
+    height: 40px;
+    width: 90px;
+    margin-left: 15px;
+    background-image: url(/img/bac2.jpg);
+    background-repeat: no-repeat;
+    background-size: 170px;
+    color: white;
+    font-weight: bold;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    font-size: 45px;
+}
+
+.markedCount {
+    margin-left: 25px;
+}
+
+.timer {
+    font-size: 45px;
+    height: 55px;
+    background-color: violet;
+    /* border: white 3px solid; */
+    background-image: url(/img/bac2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.warning {
+    position: absolute;
+    /* background-color: rgba(129, 68, 68, 0.425); */
+    right: 50%;
+    top: 31%;
+    transform: translateX(50%);
+}
+
+.warning img {
+    height: 450px;
+}
+
+.button-warning {
+    position: absolute;
+    height: 45px;
+    width: 90px;
+    right: 50%;
+    top: 80%;
+    transform: translateX(50%);
+    border: rgb(34, 3, 207) solid 3px;
+    border-radius: 25%;
+    animation: button-color 40s;
+}
+
+@keyframes button-color {
+    0%,
+    100% {
+        background-color: rgb(255, 0, 0);
+    }
+    25% {
+        background-color: cyan;
+    }
+    50% {
+        background-color: rgb(208, 255, 0);
+    }
+    75% {
+        background-color: deeppink;
+    }
+}
