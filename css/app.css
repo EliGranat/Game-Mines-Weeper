@@ -14,7 +14,8 @@ td {
     border: rgb(252, 252, 252) solid 2px;
     text-align: center;
     border-image-slice: url(../img/back3.jpg);
-    background-color: rgba(255, 255, 255, 0.274);
+    background-color: rgba(0, 0, 0, 0.37);
+    font-size: 25px;
 }
 
 .buttons {
@@ -25,13 +26,13 @@ table {
     margin: 0px auto;
     border-collapse: collapse;
     margin-top: 15px;
-    color: rgb(49, 128, 84);
+    color: rgb(190, 204, 1);
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .board-container {
-    min-height: 510px;
+    min-height: 410px;
 }
 
 .game-over {
@@ -96,13 +97,14 @@ table {
 
 .warning {
     position: absolute;
+    /* background-color: rgba(129, 68, 68, 0.425); */
     right: 50%;
     top: 31%;
     transform: translateX(50%);
 }
 
 .warning img {
-    height: 350px;
+    height: 420px;
 }
 
 .button-warning {

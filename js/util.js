@@ -7,7 +7,6 @@ function buildBoard(size, level) {
         for (var j = 0; j < size; j++) {
             gBoard[i][j] = {
                 minesAroundCount: 0,
-                showTime: 'ee',
                 isShown: false,
                 isMine: false,
                 isMarked: false
@@ -17,21 +16,23 @@ function buildBoard(size, level) {
 
     for (var i = 0; i < level; i++) {
         var idxRan = getRandomIdx();
+        if (gBoard[idxRan.i][idxRan.j].isMine) {
+            i--; // not get the mine twice in the same index
+        }
         gBoard[idxRan.i][idxRan.j].isMine = true;
     }
 }
 
 function renderBoard(board) {
     var tableHTML = '<table>'
-    var classList;
     var gameOver = '';
     for (var i = 0; i < board.length; i++) {
         tableHTML += '<tr>'
-        for (var j = 0; j < board.length; j++) {
-            if (gGame.isOn === false) {
+        for (var j = 0; j < board[0].length; j++) {
+            if (!gGame.isOn) {
                 gameOver = gBoard[i][j].isMine ? MINE : gBoard[i][j].minesAroundCount;
             }
-            tableHTML += `<td  onmousedown="cellClicked(event,this,${i},${j})" class="${classList}" id="cell-${i}-${j}">${gameOver}</td>`
+            tableHTML += `<td  onmousedown="cellClicked(event,this,${i},${j})" id="cell-${i}-${j}">${gameOver}</td>`
         }
         tableHTML += '<tr>'
     }
@@ -55,7 +56,8 @@ function getRandomIntInclusive(min, max) {
 
 
 function resetTimer() {
-    clearInterval(gTimerInterval);
+    if (gTimerInterval)
+        clearInterval(gTimerInterval);
     gTimerInterval = null;
     gTimer.msec = 0;
     gTimer.sec = 0;
