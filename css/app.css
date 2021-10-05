@@ -5,11 +5,12 @@ body {
     background-image: url(../img/back3.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    user-select: none;
 }
 
 td {
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     border: rgb(252, 252, 252) solid 2px;
     text-align: center;
     border-image-slice: url(../img/back3.jpg);
@@ -27,6 +28,10 @@ table {
     color: rgb(49, 128, 84);
     font-weight: bold;
     font-size: 30px;
+}
+
+.board-container {
+    min-height: 510px;
 }
 
 .game-over {
@@ -85,18 +90,19 @@ table {
     color: black;
     height: 25px;
     text-align: center;
+    position: sticky;
+    width: 100%;
 }
 
 .warning {
     position: absolute;
-    /* background-color: rgba(129, 68, 68, 0.425); */
     right: 50%;
     top: 31%;
     transform: translateX(50%);
 }
 
 .warning img {
-    height: 450px;
+    height: 350px;
 }
 
 .button-warning {
