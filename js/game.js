@@ -270,6 +270,6 @@ function approveRules() {
 }
 
 function playShoundBoom() {
-    var boom = new Audio('../audio/boom.mp3');
+    var boom = new Audio('./audio/boom.mp3');
     boom.play();
 }
