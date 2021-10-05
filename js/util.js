@@ -7,6 +7,7 @@ function buildBoard(size, level) {
         for (var j = 0; j < size; j++) {
             gBoard[i][j] = {
                 minesAroundCount: 0,
+                showTime: 'ee',
                 isShown: false,
                 isMine: false,
                 isMarked: false
@@ -102,4 +103,13 @@ function myTimer() {
     getTimer.innerHTML = theTime;
     gGame.secsPassed = theTime;
 
+}
+
+function getRandomColor() {
+    var color = "";
+    for (var i = 0; i < 3; i++) {
+        var sub = Math.floor(Math.random() * 256).toString(16);
+        color += (sub.length == 1 ? "0" + sub : sub);
+    }
+    return "#" + color;
 }

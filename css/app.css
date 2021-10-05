@@ -17,8 +17,7 @@ td {
 }
 
 .buttons {
-    /* background-color: brown; */
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 table {
@@ -31,7 +30,6 @@ table {
 }
 
 .game-over {
-    /* display: none; */
     position: absolute;
     background-color: rgba(129, 68, 68, 0.425);
     right: 50%;
@@ -47,30 +45,46 @@ table {
     margin-left: 15px;
     background-image: url(./img/bac2.jpg);
     background-repeat: no-repeat;
-    background-size: 170px;
+    background-size: 200px;
     color: white;
     font-weight: bold;
+    font-size: 15px;
+}
+
+.smyle-restart {
+    font-size: 25px;
 }
 
 .modal {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
-    font-size: 45px;
+    margin-top: 10px;
+    font-size: 30px;
 }
 
 .markedCount {
     margin-left: 25px;
 }
 
-.timer {
+.lives {
+    margin-left: 25px;
+}
+
+.timer,
+.copyright {
     font-size: 45px;
     height: 55px;
     background-color: violet;
-    /* border: white 3px solid; */
-    background-image: url(/img/bac2.jpg);
+    background-image: url(./img/bac2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.copyright {
+    font-size: 15px;
+    color: black;
+    height: 25px;
+    text-align: center;
 }
 
 .warning {
