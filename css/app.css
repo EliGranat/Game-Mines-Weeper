@@ -43,11 +43,11 @@ table {
 
 .game-over {
     position: absolute;
-    background-color: rgba(129, 68, 68, 0.425);
+    background-color: rgba(0, 0, 0, 0.5);
     right: 50%;
     top: 31%;
     transform: translateX(50%);
-    font-size: 70px;
+    font-size: 100px;
 }
 
 .buttons button {

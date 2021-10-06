@@ -14,12 +14,21 @@ function buildBoard(size, level) {
         }
     }
 
-    for (var i = 0; i < level; i++) {
-        var idxRan = getRandomIdx();
+    for (var index = 0; index < level; index++) {
+        var idxRan;
+        if (gManuallyCreate) {
+            idxRan = gRandomManually[index];
+
+        } else {
+            idxRan = getRandomIdx();
+        }
         if (gBoard[idxRan.i][idxRan.j].isMine) {
-            i--; // not get the mine twice in the same index
+            index--; // not get the mine twice in the same index
         }
         gBoard[idxRan.i][idxRan.j].isMine = true;
+    }
+    if (gManuallyCreate) {
+        gManuallyCreate = false;
     }
 }
 
@@ -41,23 +50,19 @@ function renderBoard(board) {
     elHTML.innerHTML = tableHTML;
 }
 
-
 function getRandomIdx() {
     var idxR = { i: 0, j: 0 };
     idxR.i = getRandomIntInclusive(0, gBoard.length - 1);
     idxR.j = getRandomIntInclusive(0, gBoard[0].length - 1);
     return idxR;
-
 }
 
 function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 function resetTimer() {
-    if (gTimerInterval)
-        clearInterval(gTimerInterval);
+    clearInterval(gTimerInterval);
     gTimerInterval = null;
     gTimer.msec = 0;
     gTimer.sec = 0;
@@ -67,7 +72,6 @@ function resetTimer() {
     var theTime = gTimer.hur + ':' + gTimer.min + ':' + gTimer.sec + ':' + gTimer.msec;
     var getTimer = document.querySelector('.timer')
     getTimer.innerHTML = theTime;
-
 }
 
 var gTimer = {
@@ -78,7 +82,6 @@ var gTimer = {
 };
 
 function myTimer() {
-
     gTimer.msec = gTimer.msec + 1;
 
     if (gTimer.msec === 1000) {
@@ -96,6 +99,7 @@ function myTimer() {
     if (gTimer.hur === 24) {
         gTimer.hur = 0;
         clearInterval(gTimerInterval);
+        gTimerInterval = null;
         liveTimer = null;
 
     }

@@ -1,11 +1,15 @@
 'use strict';
 var gBoard = [];
-var gTimerInterval = null;
+var gTimerInterval;
 const MINE = '💣';
 const FLAG = '🏴';
 var gLives = '';
 var gHintClicked = false;
 var gCounterHits = 3;
+var gCountSafeClick = 3;
+var gManuallyCreate = false;
+var gRandomManually = [];
+
 // var gCountAllPlayers = 0;
 
 var gGame = {
@@ -13,6 +17,7 @@ var gGame = {
     shownCount: 0,
     markedCount: 0,
     secsPassed: 0,
+
 }
 
 var gLevel = {
@@ -21,7 +26,6 @@ var gLevel = {
     mines: 2,
     lives: 2,
     livesUse: 0
-
 }
 window.onload = initGame;
 
@@ -29,19 +33,67 @@ function initGame() {
     resetTimer();
     gGame.shownCount = 0;
     gGame.markedCount = 0;
+    gLevel.livesUse = 0;
+    gCountSafeClick = 3;
     gCounterHits = 3;
+    hitsButton('restart');
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
     });
     buildBoard(gLevel.size, gLevel.mines);
-    // gCountAllPlayers++;
     gGame.isOn = true;
     renderBoard(gBoard);
     setMinesNegsCount();
     playerInfo();
 }
 
+function manuallyBtnClick() {
+    gRandomManually = [];
+    initGame();
+    gManuallyCreate = true;
+}
 
+function changeManuallyMode(elCell, i, j) {
+    if (gRandomManually.length < gLevel.mines) {
+        gRandomManually.push({ i: i, j: j });
+        elCell.innerText = MINE;
+        if (gRandomManually.length === gLevel.mines) {
+            console.log(gRandomManually);
+            setTimeout(() => {
+                var elStartGame = document.querySelector('.manuallyBtnClick');
+                elStartGame.innerText = 'Play!';
+                initGame();
+            }, 1000);
+        }
+        console.log(gRandomManually);
+    }
+
+
+}
+
+function SafeClick() {
+    var elButSafeClick = document.querySelector('.safe-click');
+    if (gCountSafeClick === 0) {
+        return;
+    }
+    gCountSafeClick--;
+    elButSafeClick.innerText = '🔍 ' + '(' + gCountSafeClick + ')';
+    for (var i = 0; i < 1; i++) {
+        if (gLevel.size ** 2 === gLevel.mines + gGame.shownCount) {
+            return;
+        }
+        var idxRan = getRandomIdx();
+        if ((gBoard[idxRan.i][idxRan.j].isMine) || gBoard[idxRan.i][idxRan.j].isShown) {
+            i--; // not get the mine /shown
+            continue;
+        }
+        var elSafe = document.querySelector(`#cell-${idxRan.i}-${idxRan.j}`);
+        elSafe.style.background = 'blue';
+        setTimeout(function() {
+            elSafe.style.background = 'rgba(0, 0, 0, 0.37)';
+        }, 1500);
+    }
+}
 
 function lives() {
     var live = '💛';
@@ -87,9 +139,8 @@ function playerInfo() {
     elMarkedCount.innerText = '🏴: ' + gGame.markedCount;
 
 
-    if ((gLevel.size ** 2) === (gGame.shownCount + gGame.markedCount) && (gGame.markedCount + gLevel.livesUse === gLevel.mines)) {
+    if (((gLevel.size ** 2) === (gGame.shownCount + gGame.markedCount + gLevel.livesUse)) && (gGame.markedCount + gLevel.livesUse === gLevel.mines)) {
         smyleGameRestart('😎');
-        // myLocalStorage();
         checkGameOver('Game Over <br>You Win!');
     }
 }
@@ -101,22 +152,26 @@ function levels(idxLevel) {
         { idx: 2, size: 12, mines: 30, lives: 5, livesUse: 0 }
     ]
     gLevel = gLevels[idxLevel];
-
-    console.log(gLevel);
     var elGameOver = document.querySelector('.game-over');
     elGameOver.style.display = 'none';
     lives()
     clearInterval(gTimerInterval);
     gTimerInterval = null;
+    // smyleGameRestart('restartGame');
     initGame();
 
 }
 
 function cellClicked(ev, elCell, i, j) {
     if (ev.button === 0) { //left click
+        if (gManuallyCreate) {
+            return changeManuallyMode(elCell, i, j);
+        }
         if (gBoard[i][j].isShown) return; //already show this cell
-        if (gGame.shownCount === 0) {
+        if (gGame.shownCount + gLevel.livesUse + gGame.markedCount === 0 && gGame.isOn) {
             gTimerInterval = setInterval(myTimer, 1);
+            var elStartGame = document.querySelector('.manuallyBtnClick');
+            elStartGame.innerText = 'Manually';
         }
 
         if (gHintClicked) {
@@ -136,25 +191,30 @@ function cellClicked(ev, elCell, i, j) {
             gLevel.lives--;
             gLevel.livesUse++
                 lives();
+
             if (gLevel.lives === 0) { //check if loose the game
                 checkGameOver('Game Over <br>You Looser!');
-                clearInterval(gTimerInterval);
                 return;
             }
+            return;
         }
         gGame.shownCount++;
         playerInfo();
         gBoard[i][j].isShown = true;
         elCell.innerHTML = gBoard[i][j].minesAroundCount;
-        // gHintClicked = false;
     }
     if (ev.button === 2) cellMarked(elCell, i, j); //right click
 }
 
 function cellMarked(elCell, i, j) {
+    if (gManuallyCreate) {
+        return;
+    }
     if (gBoard[i][j].isShown) return;
-    if (gGame.shownCount === 1) {
+    if (gGame.shownCount + gLevel.livesUse + gGame.markedCount === 0 && gGame.isOn) {
         gTimerInterval = setInterval(myTimer, 1);
+        var elStartGame = document.querySelector('.manuallyBtnClick');
+        elStartGame.innerText = 'Manually';
     }
     if (gBoard[i][j].isMarked) {
         elCell.innerHTML = '';
@@ -169,7 +229,9 @@ function cellMarked(elCell, i, j) {
 }
 
 function checkGameOver(loosWin) {
+    console.log('cleer');
     clearInterval(gTimerInterval);
+    gTimerInterval = null;
     gGame.isOn = false;
     renderBoard(gBoard);
     var endGame = document.querySelector('.game-over');
@@ -223,18 +285,28 @@ function expandShown(i, j) {
 }
 
 
-function hitsButton() {
+function hitsButton(start = null) {
+
     var elHitsButton = document.querySelector('.hitsBut');
-    if (gCounterHits === 1) {
+    if (!start && gCounterHits === 1) {
         gHintClicked = true;
         gCounterHits--;
         elHitsButton.style.display = 'none';
         return;
     }
-    if (gCounterHits >= 1) {
+    if (!start && gCounterHits >= 1) {
         elHitsButton.style.background = getRandomColor();
+
         gCounterHits--;
         gHintClicked = true;
+    }
+    if (start === 'restart') {
+        var safeClick = document.querySelector('.safe-click');
+        safeClick.innerText = '🔍 (3)';
+        elHitsButton.style.display = 'inline-block';
+        gCounterHits = 3;
+        elHitsButton.style.backgroundImage = 'url(../img/bac2.jpg)';
+        elHitsButton.style.backgroundSize = '200px';
     }
 }
 
