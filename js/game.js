@@ -305,7 +305,7 @@ function hitsButton(start = null) {
         safeClick.innerText = '🔍 (3)';
         elHitsButton.style.display = 'inline-block';
         gCounterHits = 3;
-        elHitsButton.style.backgroundImage = 'url(../img/bac2.jpg)';
+        elHitsButton.style.backgroundImage = 'url(./img/bac2.jpg)';
         elHitsButton.style.backgroundSize = '200px';
     }
 }
