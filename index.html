@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Game Mines Weeper</title>
     <link rel="stylesheet" href="./css/app.css">
 </head>
@@ -24,17 +24,15 @@
         <button class="level2" onclick="levels(1)"> Medium </button>
         <button class="level3" onclick="levels(2)"> Expert </button>
         <button class="smyle-restart" onclick="smyleGameRestart('restartGame')"> 😃 </button>
-        <button class="hitsBut" onclick="hitsButton()">  Hits </button>
+        <button class="hintBut" onclick="hintButton()">  Hint </button>
         <button class="safe-click" onclick="SafeClick()"> 🔍 (3)  </button>
         <button class="manuallyBtnClick" onclick="manuallyBtnClick()">Manually</button>
     </div>
 
-
-
     <div class="board-container"> </div>
+
     <footer>
         <h3 class="copyright">&copy; Copyright By Eli Granat 2021 </h3>
-
     </footer>
     <script src="js/util.js"></script>
     <script src="js/game.js"></script>

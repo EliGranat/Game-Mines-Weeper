@@ -50,6 +50,16 @@ function renderBoard(board) {
     elHTML.innerHTML = tableHTML;
 }
 
+function approveRules() {
+    var elrulesImg = document.querySelector('.warning');
+    elrulesImg.style.display = 'none';
+}
+
+function playShoundBoom() {
+    var boom = new Audio('./audio/boom.mp3');
+    boom.play();
+}
+
 function getRandomIdx() {
     var idxR = { i: 0, j: 0 };
     idxR.i = getRandomIntInclusive(0, gBoard.length - 1);

@@ -37,7 +37,6 @@ table {
 }
 
 .board-container {
-    /* min-height: 500px; */
     min-height: 100%;
 }
 
@@ -104,7 +103,6 @@ table {
 
 .warning {
     position: absolute;
-    /* background-color: rgba(129, 68, 68, 0.425); */
     right: 50%;
     top: 31%;
     transform: translateX(50%);
