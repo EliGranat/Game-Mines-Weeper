@@ -307,7 +307,7 @@ function hintButton(start = null) {
         safeClick.innerText = MAGNIGLASS + ' (3)';
         elHintButton.style.display = 'inline-block';
         gCounterHint = 3;
-        elHintButton.style.backgroundImage = 'url(./img/bac2.jpg)';
+        elHintButton.style.backgroundImage = 'url(../img/bac2.jpg)';
         elHintButton.style.backgroundSize = '200px';
     }
 }

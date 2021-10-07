@@ -33,7 +33,7 @@ function buildBoard(size, level) {
 }
 
 function renderBoard(board) {
-    var tableHTML = '<table>'
+    var tableHTML = '<table> <tbody>'
     var gameOver = '';
     for (var i = 0; i < board.length; i++) {
         tableHTML += '<tr>'
@@ -43,9 +43,9 @@ function renderBoard(board) {
             }
             tableHTML += `<td  onmousedown="cellClicked(event,this,${i},${j})" id="cell-${i}-${j}">${gameOver}</td>`
         }
-        tableHTML += '<tr>'
+        tableHTML += '</tr>'
     }
-    tableHTML += '<table>'
+    tableHTML += '</tbody></table>'
     var elHTML = document.querySelector('.board-container');
     elHTML.innerHTML = tableHTML;
 }

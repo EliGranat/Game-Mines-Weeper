@@ -1,5 +1,6 @@
 * {
     margin: 0;
+    padding: 0;
 }
 
 body {
@@ -13,31 +14,32 @@ body {
     height: 100%;
 }
 
-td {
-    height: 35px;
-    width: 35px;
-    border: rgb(252, 252, 252) solid 2px;
-    text-align: center;
-    border-image-slice: url(../img/back3.jpg);
-    background-color: rgba(0, 0, 0, 0.37);
-    font-size: 25px;
-}
-
 .buttons {
     margin-top: 10px;
 }
 
+.board-container {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
 table {
-    margin: 0px auto;
     border-collapse: collapse;
     margin-top: 15px;
     color: rgb(190, 204, 1);
     font-weight: bold;
-    font-size: 25px;
+    width: 500px;
+    height: 500px;
 }
 
-.board-container {
-    min-height: 100%;
+td {
+    min-width: 25px;
+    height: 25px;
+    border: rgb(252, 252, 252) solid 1px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.37);
+    font-size: 15px;
 }
 
 .game-over {
@@ -102,7 +104,7 @@ table {
 }
 
 .warning {
-    position: absolute;
+    position: fixed;
     right: 50%;
     top: 31%;
     transform: translateX(50%);
